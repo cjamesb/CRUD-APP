@@ -14,14 +14,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+            },
           },
-        },
+        ],
       },
       {
         test: /\.scss$/,
@@ -34,18 +36,5 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
     ],
-  },
-  resolve: {
-    extentions: [".js", ".jsx"],
-  },
-  devtool: "eval-cheap-source-map",
-  devServer: {
-    publicPath: "/build",
-    proxy: {
-      "/api": {
-        target: "http://localhost:3000",
-        secure: false,
-      },
-    },
   },
 };
