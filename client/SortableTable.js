@@ -3,6 +3,7 @@
 import React, { useCallback, useState } from "react";
 import obj from "../test";
 console.log(obj);
+import arr from "../test";
 
 // let data = obj;
 let finalKey = Object.keys(obj);
@@ -12,10 +13,11 @@ const sortData = ({ tableData, sortKey, reverse }) => {
   if (!sortKey) return tableData;
   let sortedData;
 
-  for (let key in obj) {
+  for (let key in arr) {
     let keysToCheck = Object.keys(obj[key]);
     // finalKey = key;
     console.log("key", key);
+    console.log("keysToCheck", keysToCheck);
     sortedData = keysToCheck.sort((a, b) => {
       return obj[key][a] > obj[key][b] ? 1 : -1;
     });
@@ -58,7 +60,7 @@ const SortableTable = ({ data }) => {
     headers2.push({ key: `${finalKey[i]} + ${j}`, label: finalKey[i] });
   }
 
-  console.log(headers2);
+  console.log("headers2", headers2);
 
   const sortedData = useCallback(
     () => sortData({ tableData: data, sortKey, reverse: sortOrder === "des" }),

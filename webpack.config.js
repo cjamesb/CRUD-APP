@@ -41,4 +41,8 @@ module.exports = {
     // Enable importing JS / JSX files without specifying their extension
     extensions: [".js", ".jsx"],
   },
+  devServer: {
+    publicPath: "/build",
+    hot: true,
+  },
 };

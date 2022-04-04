@@ -1,5 +1,7 @@
 /** @format */
 
+import lodash from "lodash";
+
 let obj = {
   node2: {
     node0: 21,
@@ -14,23 +16,40 @@ let obj = {
     node1: 13,
   },
 };
-export default obj;
+// export default obj;
 
-console.log(obj);
+let x = [obj];
+console.log(x);
+
+let arr = [];
 
 for (let key in obj) {
-  // console.log(key);
-  // console.log(obj[key]);
-  let keysToCheck = Object.keys(obj[key]);
-  console.log(keysToCheck);
+  console.log(key);
+  console.log(obj[key]);
 
-  keysToCheck.sort((a, b) => {
-    return obj[key][a] > obj[key][b] ? 1 : -1;
-  });
-  console.log(keysToCheck);
-  console.log(keysToCheck);
+  for (let key2 in obj[key]) {
+    console.log(key2);
+    let distance = obj[key][key2];
+    console.log(distance);
+    console.log(key2);
+    console.log(obj[key][key2]);
+
+    arr.push({
+      key: key,
+      child: {
+        key: `${key2} - ${distance}`,
+        name: `${key2}`,
+        distance: distance,
+      },
+    });
+  }
 }
 
-//it is checking and moving keys now
+export default arr;
 
-// console.log(obj);
+console.log(arr);
+
+// console.print(lodash.sortBy(arr, ['child.key', 'child.name']));
+console.log(arr[0]["key"]);
+console.log(arr[0]["child"]);
+console.log(arr[0]["child"]["distance"]);
