@@ -1,12 +1,13 @@
 /** @format */
 
 import React from "react";
+import SortableTable from "./SortableTable.js";
 
 const App = () => {
   return (
     <div>
       <div>
-        <p>tests stuff</p>
+        <SortableTable></SortableTable>
       </div>
     </div>
   );

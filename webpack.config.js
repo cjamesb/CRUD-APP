@@ -1,9 +1,9 @@
 /** @format */
 
 const path = require("path");
-
+// process.env.NODE_ENV
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode: "development",
   entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "build"),
@@ -14,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -36,5 +36,9 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
     ],
+  },
+  resolve: {
+    // Enable importing JS / JSX files without specifying their extension
+    extensions: [".js", ".jsx"],
   },
 };
