@@ -1,16 +1,29 @@
 /** @format */
-import nodes from "../nodes.js";
+
 import React, { useCallback, useState } from "react";
 import obj from "../test";
 console.log(obj);
 
 // let data = obj;
+let finalKey = Object.keys(obj);
+console.log("finalKey", finalKey);
 
 const sortData = ({ tableData, sortKey, reverse }) => {
   if (!sortKey) return tableData;
-  const sortedData = obj.sort((a, b) => {
-    return a[sortKey] > b[sortKey] ? 1 : -1;
-  });
+  let sortedData;
+
+  for (let key in obj) {
+    let keysToCheck = Object.keys(obj[key]);
+    // finalKey = key;
+    console.log("key", key);
+    sortedData = keysToCheck.sort((a, b) => {
+      return obj[key][a] > obj[key][b] ? 1 : -1;
+    });
+  }
+  console.log(finalKey);
+  // const sortedData = obj.sort((a, b) => {
+  //   return a[sortKey] > b[sortKey] ? 1 : -1;
+  // });
 
   if (reverse) {
     return sortedData.reverse();
@@ -39,10 +52,20 @@ const SortableTable = ({ data }) => {
     { key: "childNode", label: "Child Node" },
   ];
 
+  let headers2 = [];
+  let j = 200;
+  for (let i = 0; i < finalKey.length; i++, j++) {
+    headers2.push({ key: `${finalKey[i]} + ${j}`, label: finalKey[i] });
+  }
+
+  console.log(headers2);
+
   const sortedData = useCallback(
     () => sortData({ tableData: data, sortKey, reverse: sortOrder === "des" }),
     [data, sortKey, sortOrder]
   );
+
+  console.log("sortedData", sortedData());
 
   function changeSort(key) {
     if (sortOrder === "asc") {
@@ -59,10 +82,10 @@ const SortableTable = ({ data }) => {
       <table>
         <thead>
           <tr>
-            {headers.map((row) => {
+            {headers2.map((row) => {
               return (
                 <td key={row.key}>
-                  {row.label}{" "}
+                  {row.label}
                   <SortButton
                     columnKey={row.key}
                     onClick={() => {
@@ -78,12 +101,13 @@ const SortableTable = ({ data }) => {
         </thead>
 
         <tbody>
+          {console.log(sortedData())}
           {sortedData().map((node) => {
             return (
-              <tr key={node.id}>
-                <td>{node.id}</td>
-                <td>{node.parentNode}</td>
-                <td>{node.childNode}</td>
+              <tr key={node}>
+                <td>{node}</td>
+                {/* <td>{node.parentNode}</td>
+                <td>{node.childNode}</td> */}
               </tr>
             );
           })}
