@@ -33,33 +33,58 @@ let one = Object.keys(obj).map((e) => {
 console.log(one);
 console.log(two);
 
-let keys4 = Object.keys(obj);
+// let keys4 = Object.keys(obj);
 // console.log(keys4);
 // console.log(one.length);
 // console.log(keys4.length == one.length);
-console.log(one[0]);
-let arr = [];
-let arr2 = [];
-for (let i = 0; i < keys4.length; i++) {
-  arr.push(<th>{keys4[i]}</th>);
-  arr2.push(<td>{one[i]}</td>);
+// console.log(one[0]);
+// let arr = [];
+// let arr2 = [];
+// for (let i = 0; i < keys4.length; i++) {
+// arr.push(<th>{keys4[i]}</th>);
+// arr2.push(<td>{[one[i][0], one[i][1]]}</td>);
+// }
+
+function createRows(one, i, j, arr = []) {
+  let length = one.length;
+  while (i < length) {
+    arr.push(one[i][j]);
+    i++;
+  }
+  return arr;
 }
 
-console.log("arr", arr);
+//this takes obj input and gets an array that represents a horizontal row
+function modelRows(one) {
+  let i = 0;
+  let j = 0;
+  let arr2 = [];
+  while (j < one[i].length) {
+    arr2.push(createRows(one, i, j));
+    j++;
+  }
+  return arr2;
+}
+
+let rowArray = modelRows(one);
+console.log(rowArray);
+
+// let htmlRowArray = [];
+// for(let )
+let x = Object.keys(obj);
+console.log(obj["node0"]);
 
 export function Build() {
-  return (
-    <div>
-      <table>
-        <thead>
-          <>{arr}</>
-        </thead>
-        <tbody>
-          <tr>{arr2}</tr>
-        </tbody>
-      </table>
-    </div>
-  );
+  return x.map((e) => {
+    return (
+      <tr>
+        {Object.keys(obj[e]).map((ele) => {
+          console.log("ele", ele);
+          return <td>{obj[e][ele]}</td>;
+        })}
+      </tr>
+    );
+  });
 }
 
 // const { node0, node1 } = obj["node2"];
@@ -106,3 +131,4 @@ export function Build() {
 
 // let arr2 = Newfunc(obj);
 // console.log("arr2", arr2);
+// let x = Object.keys(obj);
