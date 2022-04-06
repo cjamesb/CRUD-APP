@@ -5,7 +5,7 @@ import React from "react";
 import JsonDisplay from "./display.js";
 // import { MakeTable } from "../processing";
 import SortableTable from "../letsDoThis.js";
-import Trial from "../testingstuff/trial1";
+
 import { Build } from "../visitor.js";
 import { Buildtwo } from "../scratch.js";
 import { TableRow } from "../TableRow.js";
