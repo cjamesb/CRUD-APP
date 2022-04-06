@@ -1,0 +1,12 @@
+[ 
+    {
+    "id": "node2",
+    "child": [{"id":"node1", "value":13}, {"id": "node0", "value" : 42}]
+    },
+    {
+    "id": "node1",
+    "child": [{"id":"node2", "value":45}, {"id": "node0", "value" : 13}]
+    }
+
+
+]
