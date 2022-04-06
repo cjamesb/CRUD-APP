@@ -93,6 +93,7 @@ console.log(entriess);
 // }
 
 function normalizeData(obj) {
+  let maxChildren = 0;
   let newObj = {};
   let objArr = [];
   for (let key in obj) {
@@ -100,7 +101,14 @@ function normalizeData(obj) {
 
     let curr;
     newObj.id = key;
+    console.log(obj[key]);
+    let childLength = Object.keys(obj[key]).length;
+    if (childLength > maxChildren) {
+      maxChildren = childLength;
+    }
+
     for (let key2 in obj[key]) {
+      // console.log(obj[key])
       curr = `${key2} - ${obj[key][key2]}`;
 
       newObj[`child${i}`] = curr;
@@ -112,7 +120,41 @@ function normalizeData(obj) {
   }
 
   console.log(objArr);
-  return objArr;
+  return [objArr, maxChildren];
 }
 
 console.log(normalizeData(obj));
+
+const [x, max] = normalizeData(obj);
+console.log("x", x);
+console.log(max);
+
+//////Normalize Header input
+// {
+//   id: "node2",
+//   child0: "node0 - 21",
+//   child1: "node1 - 42",
+// },
+
+function normalizeHeader(maxChildren) {
+  // let arr = [{Header:}]
+  let startObj = {};
+  let arr = [];
+  startObj.Header = "Parent Node";
+  startObj.accessor = "id";
+  arr.push(startObj);
+  console.log(arr);
+  console.log(startObj);
+
+  for (let i = 0; i < maxChildren; i++) {
+    const nodeHeader = {};
+    nodeHeader.Header = `child${i}`;
+    nodeHeader.accessor = `child${i}`;
+
+    console.log(nodeHeader);
+    arr.push(nodeHeader);
+  }
+  return arr;
+}
+
+console.log(normalizeHeader(max));
