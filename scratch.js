@@ -92,7 +92,7 @@ console.log(entriess);
 //   );
 // }
 
-function normalizeData(obj) {
+export function normalizeData(obj) {
   let maxChildren = 0;
   let newObj = {};
   let objArr = [];
@@ -136,7 +136,7 @@ console.log(max);
 //   child1: "node1 - 42",
 // },
 
-function normalizeHeader(maxChildren) {
+export function normalizeHeader(maxChildren) {
   // let arr = [{Header:}]
   let startObj = {};
   let arr = [];

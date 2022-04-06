@@ -17,9 +17,9 @@ const App = () => {
       <div>
         <h1>hello</h1>
         {/* <TableRow></TableRow> */}
-        {/* <ReactTable></ReactTable> */}
+        <ReactTable></ReactTable>
         {/* <Newfunc /> */}
-        <Build></Build>
+        {/* <Build></Build> */}
         {/* <Buildtwo /> */}
         {/* {<Trial></Trial>} */}
         {/* <JsonDisplay /> */}
